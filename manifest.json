@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "猫大推特回帖助手",
+  "version": "2.7.1",
+  "description": "猫大人（@xianshengwangm）的 X 回帖工具：自动抓加密 tab 的推文、生成回复、按随机间隔发送，回帖时顺手关注值得跟的人，偶尔转推或引用一条够格的内容（引用要过质量闸）。全部在扩展里跑，不用开本地服务。",
+  "permissions": ["tabs", "storage", "scripting", "alarms", "sidePanel"],
+  "host_permissions": [
+    "https://x.com/*",
+    "https://twitter.com/*",
+    "https://api.deepseek.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "optional_host_permissions": ["https://*/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*", "https://twitter.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "猫大推特回帖助手"
+  },
+  "side_panel": {
+    "default_path": "panel.html"
+  }
+}
